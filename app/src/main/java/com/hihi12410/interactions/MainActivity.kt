@@ -1,10 +1,12 @@
 package com.hihi12410.interactions
 
+import android.content.DialogInterface
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.view.ViewCompat
@@ -16,6 +18,7 @@ class MainActivity : AppCompatActivity() {
     lateinit var showToast : Button
     lateinit var showSnackBar : Button
     lateinit var layout : ConstraintLayout
+    lateinit var special : Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,6 +33,7 @@ class MainActivity : AppCompatActivity() {
         showToast = findViewById<Button>(R.id.button)
         showSnackBar = findViewById<Button>(R.id.worse)
         layout = findViewById<ConstraintLayout>(R.id.main)
+        special = findViewById<Button>(R.id.special)
 
 
         showSnackBar.setOnClickListener {
@@ -42,5 +46,25 @@ class MainActivity : AppCompatActivity() {
             Toast.makeText(applicationContext, "I hate otp bank", Toast.LENGTH_SHORT).show()
         }
 
+        fun showAlertDialog()
+        {
+            var alertDialog = AlertDialog.Builder(this@MainActivity)
+
+            alertDialog.setTitle("67 kid found dead")
+                .setMessage("A teenage boy who recently went viral for his quirky “67” catchphrase was tragically found dead in an abandoned parking lot. The incident occurred after his home address was leaked online and he began receiving multiple death threats. ")
+                .setIcon(R.drawable.very_funny)
+                .setCancelable(false)
+                .setNegativeButton("RIP 67 kid", DialogInterface.OnClickListener {dialogInterface, i->
+                    dialogInterface.cancel()
+                })
+                .setPositiveButton("Yes yes affirm", DialogInterface.OnClickListener {dialogInterface, i->
+                    special.text = "67 kid dead"
+                })
+                .show()
+        }
+
+        special.setOnClickListener {
+            showAlertDialog()
+        }
     }
 }
